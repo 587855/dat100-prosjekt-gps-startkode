@@ -12,7 +12,10 @@ public class GPSData {
 
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.construtor("GPSData"));
+		gpspoints = new GPSPoint[n]; //- Start på OPPGAVE 2 b)
+		antall = 0;
+		
+		//throw new UnsupportedOperationException(TODO.construtor("GPSData"));
 
 		// TODO - SLUTT
 	}
