@@ -76,7 +76,7 @@ public class GPSUtils {
 
 	}
 
-	private static int R = 6371000; // jordens radius
+	private static int R = 6371000; // jordens radius i m
 
 	public static double distance(GPSPoint gpspoint1, GPSPoint gpspoint2) {
 
@@ -89,10 +89,10 @@ public class GPSUtils {
 		latitude2 = gpspoint2.getLatitude();
 		longitude2 = gpspoint2.getLongitude();
 		
-		Double latDistance = toRadians(latitude1-latitude2);
+		Double latDistance = toRadians(latitude2-latitude1); //endret rekkefølge fra:(lat1-lat2) til:(lat2-lat1)
 		Double lonDistance = toRadians(longitude2-longitude1);
 		
-		Double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2) + 
+		Double a = (Math.sin(latDistance / 2) * Math.sin(latDistance / 2)) + 
 		Math.cos(toRadians(latitude1)) * Math.cos(toRadians(latitude2)) * 
 		Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
 		
@@ -100,7 +100,7 @@ public class GPSUtils {
 		
 		d = R * c;
 		
-		return d;
+		return d; //distanse i meter
 		 
 		//throw new UnsupportedOperationException(TODO.method());
 		
@@ -116,14 +116,14 @@ public class GPSUtils {
 
 		// TODO - START
 		
-		double time1 = gpspoint1.getTime();
-		double time2 = gpspoint2.getTime();
+		double time1 = gpspoint1.getTime();					//tid i sek
+		double time2 = gpspoint2.getTime();					//tid i sek
 
-		double hr = (time2-time1)/3600;
-		double km = distance(gpspoint1, gpspoint2)/1000;
+		double hr = (time2-time1)/3600;						//gir tidsdifferanse i timer
+		double km = distance(gpspoint1, gpspoint2)/1000; 	//gir distanse i km
 		speed = km/hr;
 		
-		return speed;
+		return speed;										//returnerer gjennomsnittshastighet i km/t
 		//throw new UnsupportedOperationException(TODO.method());
 		// TODO - SLUTT
 	}

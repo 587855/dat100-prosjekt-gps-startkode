@@ -64,7 +64,7 @@ public class GPSData {
 		// TODO - START
 		//løkke som printer ut toString() per indeks i tabell
 		for (int i=0; i<gpspoints.length; i++ ) {
-			System.out.println(gpspoints[i].toString());
+			System.out.print(gpspoints[i].toString());
 		}
 		
 
