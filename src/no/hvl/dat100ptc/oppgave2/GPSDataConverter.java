@@ -13,6 +13,7 @@ public class GPSDataConverter {
 	private static int TIME_STARTINDEX = 11; // posisjon for start av tidspunkt i timestr
 
 	public static int toSeconds(String timestr) {
+		//fullført 2a)
 		
 		int secs;
 		int hr, min, sec;
