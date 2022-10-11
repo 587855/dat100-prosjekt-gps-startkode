@@ -4,6 +4,7 @@ import static java.lang.Math.*;
 
 import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
+import no.hvl.dat100ptc.oppgave2.GPSDataConverter;
 
 public class GPSUtils {
 
@@ -28,8 +29,16 @@ public class GPSUtils {
 
 		// TODO - START
 
-		throw new UnsupportedOperationException(TODO.method());
-
+		min = da[0];
+		
+		for (double d : da) {
+			if (d < min) {
+				min = d;
+			}
+		
+		//throw new UnsupportedOperationException(TODO.method());
+		}
+		return min;
 		// TODO - SLUT
 
 	}
@@ -53,8 +62,15 @@ public class GPSUtils {
 	public static double[] getLongitudes(GPSPoint[] gpspoints) {
 
 		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
+		double [] longitudes = new double[gpspoints.length];
+		for (int i = 0; i<gpspoints.length; i++) {
+			
+			longitudes[i] = gpspoints[i].getLongitude();
+			
+		}
+		return longitudes;
+		
+		//throw new UnsupportedOperationException(TODO.method());
 		
 		// TODO - SLUTT
 
@@ -68,8 +84,26 @@ public class GPSUtils {
 		double latitude1, longitude1, latitude2, longitude2;
 
 		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
+		latitude1 = gpspoint1.getLatitude();
+		longitude1 = gpspoint1.getLongitude();
+		latitude2 = gpspoint2.getLatitude();
+		longitude2 = gpspoint2.getLongitude();
+		
+		Double latDistance = toRadians(latitude1-latitude2);
+		Double lonDistance = toRadians(longitude2-longitude1);
+		
+		Double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2) + 
+		Math.cos(toRadians(latitude1)) * Math.cos(toRadians(latitude2)) * 
+		Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+		
+		Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		
+		d = R * c;
+		
+		return d;
+		 
+		//throw new UnsupportedOperationException(TODO.method());
+		
 
 		// TODO - SLUTT
 
@@ -81,11 +115,23 @@ public class GPSUtils {
 		double speed;
 
 		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
+		
+		double time1 = gpspoint1.getTime();
+		String timestr = "" + time1;
+		int a = GPSDataConverter.toSeconds(timestr);
+		
+		double time2 = gpspoint2.getTime();
+		String timestr2 = "" + time2;
+		int b = GPSDataConverter.toSeconds(timestr2);
+		
+		int sec = a-b;
+		double hr = sec/3600;
+		double km = distance(gpspoint1, gpspoint2)/1000;
+		speed = 23;
+		//throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - SLUTT
-
+		return speed;
 	}
 
 	public static String formatTime(int secs) {
