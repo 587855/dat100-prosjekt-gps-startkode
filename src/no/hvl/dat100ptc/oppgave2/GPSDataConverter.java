@@ -30,10 +30,20 @@ public class GPSDataConverter {
 	public static GPSPoint convert(String timeStr, String latitudeStr, String longitudeStr, String elevationStr) {
 
 		GPSPoint gpspoint;
+		// metodekall: convert("2017-08-13T08:52:26.000Z","60.385390","5.217217","61.9")
 
 		// TODO - START ;
+		//les string og gjør om til int,double,double,double
+		int time = toSeconds(timeStr);		
+		double latitude = Double.parseDouble(latitudeStr);
+		double longitude = Double.parseDouble(longitudeStr);
+		double elevation = Double.parseDouble(elevationStr);
 		
-		throw new UnsupportedOperationException(TODO.method());
+		//lager nytt objekt med konduktør
+		gpspoint = new GPSPoint(time, latitude, longitude, elevation);
+		
+		//returnerer peker
+		return gpspoint;
 
 		// OPPGAVE - SLUTT ;
 	    
