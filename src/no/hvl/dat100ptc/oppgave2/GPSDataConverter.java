@@ -16,11 +16,15 @@ public class GPSDataConverter {
 		
 		int secs;
 		int hr, min, sec;
+		//sara
 		
 		// TODO
 		// OPPGAVE - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		String timer = timestr.substring(11,13);
+		hr = (Integer.parseInt(timer))*3600;
+		
+		//fredrik
 
 		// OPPGAVE - SLUTT
 		
