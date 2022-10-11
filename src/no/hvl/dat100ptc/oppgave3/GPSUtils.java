@@ -22,7 +22,7 @@ public class GPSUtils {
 		return max;
 	}
 
-	public static double findMin(double[] da) {
+	public static double findMin(double[] da) { // Samme som findMax, bare at vi skal finne den minste
 
 		double min;
 
@@ -34,11 +34,18 @@ public class GPSUtils {
 
 	}
 
-	public static double[] getLatitudes(GPSPoint[] gpspoints) {
+	public static double[] getLatitudes(GPSPoint[] gpspoints) { //Oppgave 3 b)
 
 		// TODO - START
+		double [] latitudes = new double[gpspoints.length];
+		for (int i = 0; i<gpspoints.length; i++) {
+			
+			latitudes[i] = gpspoints[i].getLatitude();
+			
+		}
+		return latitudes;
 		
-		throw new UnsupportedOperationException(TODO.method());
+		//throw new UnsupportedOperationException(TODO.method());
 		
 		// TODO - SLUTT
 	}
