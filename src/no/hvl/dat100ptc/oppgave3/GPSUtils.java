@@ -117,21 +117,15 @@ public class GPSUtils {
 		// TODO - START
 		
 		double time1 = gpspoint1.getTime();
-		String timestr = "" + time1;
-		int a = GPSDataConverter.toSeconds(timestr);
-		
 		double time2 = gpspoint2.getTime();
-		String timestr2 = "" + time2;
-		int b = GPSDataConverter.toSeconds(timestr2);
-		
-		int sec = a-b;
-		double hr = sec/3600;
-		double km = distance(gpspoint1, gpspoint2)/1000;
-		speed = 23;
-		//throw new UnsupportedOperationException(TODO.method());
 
-		// TODO - SLUTT
+		double hr = (time2-time1)/3600;
+		double km = distance(gpspoint1, gpspoint2)/1000;
+		speed = km/hr;
+		
 		return speed;
+		//throw new UnsupportedOperationException(TODO.method());
+		// TODO - SLUTT
 	}
 
 	public static String formatTime(int secs) {
@@ -140,8 +134,16 @@ public class GPSUtils {
 		String TIMESEP = ":";
 
 		// TODO - START
+		
+		int hh = secs / 3600;
+		int mm = (secs % 3600) / 60;
+		int ss = secs % 60;
 
-		throw new UnsupportedOperationException(TODO.method());
+		timestr = String.format("  %02d:%02d:%02d", hh, mm, ss);
+		
+		return timestr;
+
+		//throw new UnsupportedOperationException(TODO.method());
 		
 		// TODO - SLUTT
 
@@ -151,10 +153,18 @@ public class GPSUtils {
 	public static String formatDouble(double d) {
 
 		String str;
-
+		
 		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
+		double round = Math.round(d*100.0)/100.0;
+		str = "" + round;
+		int count = str.length();
+		String spaces = "";
+		while (count < TEXTWIDTH) {
+			spaces += " ";
+			count ++;
+		}
+		return spaces + str;
+		//throw new UnsupportedOperationException(TODO.method());
 
 		// TODO - SLUTT
 		
