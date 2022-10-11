@@ -30,19 +30,29 @@ public class GPSData {
 
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		if (gpspoints.length > antall) {
+			gpspoints[antall] = gpspoint;
+			this.antall+=1;
+			inserted = true;
+			}
 
+		return inserted;
 		// TODO - SLUTT
 	}
 
 	public boolean insert(String time, String latitude, String longitude, String elevation) {
 
 		GPSPoint gpspoint;
+		//input: gps i stringformat
 
 		// TODO - START
+		//kjører metoden med input string og output peker
+		gpspoint = GPSDataConverter.convert(time, latitude, longitude, elevation);
 		
-		throw new UnsupportedOperationException(TODO.method());
-
+		//kjører metoden insertgps på pekeren?
+		boolean sattInn = insertGPS(gpspoint);
+		
+		return sattInn;
 		// TODO - SLUTT
 		
 	}
@@ -52,12 +62,15 @@ public class GPSData {
 		System.out.println("====== Konvertert GPS Data - START ======");
 
 		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
+		//løkke som printer ut toString() per indeks i tabell
+		for (int i=0; i<gpspoints.length; i++ ) {
+			System.out.println(gpspoints[i].toString());
+		}
+		
 
 		// TODO - SLUTT
 		
-		// System.out.println("====== Konvertert GPS Data - SLUTT ======");
+		System.out.println("====== Konvertert GPS Data - SLUTT ======");
 
 	}
 }
