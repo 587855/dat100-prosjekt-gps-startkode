@@ -137,19 +137,22 @@ public class GPSComputer {
 		double h = secs / 3600.0;
 		// met = 1/Math.pow(weight, -1)* Math.pow(h, -1);
 
-		if (speedmph < 10) {
-			met = 4.0;
-		} else if (speedmph <= 12) {
-			met = 6.0;
-		} else if (speedmph <= 14) {
-			met = 8.0;
-		} else if (speedmph <= 16) {
-			met = 10.0;
-		} else if (speedmph <= 20) {
-			met = 12.0;
-		} else {
+		if (speedmph > 20) {
 			met = 16.0;
 		}
+		else if(speedmph >= 16) {
+			met = 12.0;
+		}
+		else if(speedmph >= 14 ) {
+			met = 10.0;
+		}
+		else if(speedmph >=12) {
+			met = 8.0;
+		}
+		else {
+			met = 4.0;
+		}
+
 		kcal = met * weight * h;
 		return kcal;
 
