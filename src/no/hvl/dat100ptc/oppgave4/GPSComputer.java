@@ -72,7 +72,7 @@ public class GPSComputer {
 //			}
 //		}
 		//tid på siste tall i ruten minus tid på første tall i ruten
-		time = gpspoints[gpspoints.length-1].getTime() - gpspoints[0].getTime() ;
+		time = gpspoints[gpspoints.length-1].getTime() - gpspoints[0].getTime();
 		
 		return time;
 	}
@@ -126,16 +126,33 @@ public class GPSComputer {
 
 	// beregn kcal gitt weight og tid der kjøres med en gitt hastighet
 	public double kcal(double weight, int secs, double speed) {
+		// kcal(kg, sekunder, m/s)
 
 		double kcal;
 
 		// MET: Metabolic equivalent of task angir (kcal x kg-1 x h-1)
-		double met = 0;		
+		double met = 0;
 		double speedmph = speed * MS;
 
 		// TODO - START
-		//met varierer på fart
-		//met regnes ut i fra mph
+		// met varierer på fart
+		// met regnes ut i fra mph
+		double h = secs/3600.0;
+		if (speedmph < 10) {
+			met = 4.0;
+		} else if (speedmph <= 12) {
+			met = 6.0;
+		} else if (speedmph <= 14) {
+			met = 8.0;
+		} else if (speedmph <= 16) {
+			met = 10.0;
+		} else if (speedmph <= 20) {
+			met = 12.0;
+		} else {
+			met = 16.0;
+		}
+		kcal = met * weight * h;
+		return kcal;
 
 		// TODO - SLUTT
 	}
@@ -143,12 +160,22 @@ public class GPSComputer {
 	public double totalKcal(double weight) {
 
 		double totalkcal = 0;
+		double kcal = 0;
+		int secs; double speed;
 
 		// TODO - START
 		
-		throw new UnsupportedOperationException(TODO.method());
+		//double [] rute = speeds(); //speeds gir en tabell med hastighet mellom punkt A og punkt B
+		
+		for (int i=0; i< gpspoints.length-1; i++) {
+			secs = gpspoints[i+1].getTime() - gpspoints[i].getTime();
+			speed = (GPSUtils.speed(gpspoints[i], gpspoints[i+1]))/3.6; //fra km/t til m/s
+			kcal = kcal(weight, secs, speed);
+			totalkcal += kcal;
+		}
 
-		// TODO - SLUTTs
+		// TODO - SLUTT
+		return totalkcal;
 	}
 	
 	private static double WEIGHT = 80.0;
@@ -165,7 +192,7 @@ public class GPSComputer {
 		System.out.println("Total elevation\t:  " + totalElevation() + " m");
 		System.out.println("Max speed\t:  " + String.format("%.2f",maxSpeed()) + " km/t");
 		System.out.println("Average speed\t:  " + String.format("%.2f",averageSpeed()) + " km/t");
-		System.out.println("Energy\t\t:  " + " kcal");
+		System.out.println("Energy\t\t:  " + String.format("%.2f",totalKcal(WEIGHT))+ " kcal");
 		
 		// TODO - SLUTT
 		System.out.println("==============================================");
