@@ -95,15 +95,7 @@ public class GPSComputer {
 	
 	public double maxSpeed() {
 		
-		double [] tab = speeds();
-		double maxspeed = tab[0];
-
-		
-		for (int i = 0; i < tab.length-1; i++) {
-			if (tab[i] < tab[i+1]) {
-				maxspeed = tab[i+1];
-			}
-		}
+		double maxspeed = GPSUtils.findMax(speeds());
 		return maxspeed;
 	}
 
@@ -142,8 +134,8 @@ public class GPSComputer {
 		double speedmph = speed * MS;
 
 		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
+		//met varierer på fart
+		//met regnes ut i fra mph
 
 		// TODO - SLUTT
 	}
