@@ -87,6 +87,7 @@ public class GPSComputer {
 		for (int i=0; i< gpspoints.length-1; i++) {
 			double temp = GPSUtils.speed(gpspoints[i], gpspoints[i+1]);
 			fart_tab[i] = temp;
+			//System.out.println("GG speed\t\t" + temp);
 
 		}
 		return fart_tab;
@@ -115,7 +116,7 @@ public class GPSComputer {
 		
 		average = (distance/time)*3.6; //regne om fra m/s til km/t
 		
-		return average;
+		return average; //retur i km/t
 		
 	}
 
@@ -165,10 +166,17 @@ public class GPSComputer {
 		System.out.println("==============================================");
 
 		// TODO - START
+		//printer ikke ut de faktiske verdiene enda
 
-		throw new UnsupportedOperationException(TODO.method());
+		System.out.println("Total time\t:" + GPSUtils.formatTime(totalTime()));
+		System.out.println("Total distance\t:  " + String.format("%.2f",totalDistance()/1000) + " km");
+		System.out.println("Total elevation\t:  " + totalElevation() + " m");
+		System.out.println("Max speed\t:  " + String.format("%.2f",maxSpeed()) + " km/t");
+		System.out.println("Average speed\t:  " + String.format("%.2f",averageSpeed()) + " km/t");
+		System.out.println("Energy\t\t:  " + " kcal");
 		
 		// TODO - SLUTT
+		System.out.println("==============================================");
 		
 	}
 

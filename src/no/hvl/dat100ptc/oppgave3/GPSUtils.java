@@ -92,11 +92,14 @@ public class GPSUtils {
 		Double latDistance = toRadians(latitude2-latitude1); //endret rekkefølge fra:(lat1-lat2) til:(lat2-lat1)
 		Double lonDistance = toRadians(longitude2-longitude1);
 		
-		Double a = (Math.sin(latDistance / 2) * Math.sin(latDistance / 2)) + 
-		Math.cos(toRadians(latitude1)) * Math.cos(toRadians(latitude2)) * 
-		Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+//		Double a = (Math.sin(latDistance / 2) * Math.sin(latDistance / 2)) + 
+//		Math.cos(toRadians(latitude1)) * Math.cos(toRadians(latitude2)) * 
+//		Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
 		
-		Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		Double a = pow(sin(latDistance/2),2) + cos(toRadians(latitude1)) 
+					*cos(toRadians(latitude2))* pow(sin(lonDistance/2),2);
+		
+		Double c = 2 * atan2(sqrt(a), sqrt(1-a));
 		
 		d = R * c;
 		
