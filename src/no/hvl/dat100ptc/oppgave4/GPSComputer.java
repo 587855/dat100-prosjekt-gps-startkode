@@ -189,7 +189,7 @@ public class GPSComputer {
 
 		System.out.println("Total time\t:" + GPSUtils.formatTime(totalTime()));
 		System.out.println("Total distance\t:  " + String.format("%.2f", totalDistance() / 1000) + " km");
-		System.out.println("Total elevation\t:  " + totalElevation() + " m");
+		System.out.println("Total elevation\t:  " + String.format("%.2f",totalElevation()) + " m");
 		System.out.println("Max speed\t:  " + String.format("%.2f", maxSpeed()) + " km/t");
 		System.out.println("Average speed\t:  " + String.format("%.2f", averageSpeed()) + " km/t");
 		System.out.println("Energy\t\t:  " + String.format("%.2f", totalKcal(WEIGHT)) + " kcal");
