@@ -47,12 +47,13 @@ public class GPSComputer {
 
 		// løkke som starter på 0 og til <lengden-1
 		for (int i = 0; i < gpspoints.length - 1; i++) {
-			double temp_1 = gpspoints[i].getElevation();
-			double temp_2 = gpspoints[i + 1].getElevation();
-			if (temp_1 < temp_2) {
-				elevation += (temp_2 - temp_1);
+			double pos_1 = gpspoints[i].getElevation();
+			double pos_2 = gpspoints[i + 1].getElevation();
+			if (pos_1 < pos_2) {
+				elevation += (pos_2 - pos_1);
 			}
 		}
+		
 		return elevation;
 
 	}
